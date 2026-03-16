@@ -13,8 +13,7 @@ public class UserDAO {
         sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
     }
 
-    public int login(UserDTO userDTO) {
-		Integer memberNumber = sqlSession.selectOne("member.login", userDTO);
-		return memberNumber == null ? -1 : memberNumber;
-	}
+    public UserDTO login(UserDTO userDTO) {
+    	return sqlSession.selectOne("user.login", userDTO);
+    }
 }

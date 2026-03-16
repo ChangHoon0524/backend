@@ -3,7 +3,6 @@ package com.oulim.app.user.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -21,40 +20,34 @@ public class LoginOkController implements Execute{
 		
 		UserDTO userDTO = new UserDTO();
 		UserDAO userDAO = new UserDAO();
-		int memberNumber = 0;
 		Result result = new Result();
 		
-		String memberId = request.getParameter("memberId");
-		String memberPassword = request.getParameter("memberPassword");
-		String remember = request.getParameter("remember");
+		String userId = request.getParameter("userId");
+		String userPassword = request.getParameter("userPw");
 		HttpSession session = request.getSession(); //+++ 세션저장
 		String path = null;
 		
 		userDTO.setUserId(userId);
-		userDTO.setUserPw(userPw);
+		userDTO.setUserPw(userPassword);
 		System.out.println(userDTO);
 		
 		//쿼리문 실행 메소드 호출
-		memberNumber = memberDAO.login(memberDTO);
-		System.out.println(memberNumber); 
+		UserDTO loginUser = userDAO.login(userDTO);
 		
-		if(memberNumber != -1) {
-			path = "/member/join.me";
-			session.setAttribute("memberNumber", memberNumber);
-			System.out.println("세션값 : " + memberNumber);
+		if (loginUser != null) {
+			// 세션 저장
+			session.setAttribute("userNo", loginUser.getUserNo());
+			session.setAttribute("userNickname", loginUser.getUserNickname());
+			session.setAttribute("userType", loginUser.getUserType());
+
+			System.out.println("userNo : " + loginUser.getUserNo());
+			System.out.println("userNickname : " + loginUser.getUserNickname());
+			System.out.println("userType : " + loginUser.getUserType());
+
+			path = "/index.jsp"; // 성공 후 이동 경로 수정
 			
-			if(remember != null) {
-				Cookie cookie = new Cookie("memberId", memberId);
-				cookie.setMaxAge(60 * 60 * 24); //1일
-				response.addCookie(cookie);
-			}else {
-				//체크 해제시 쿠키 삭제
-				Cookie cookie = new Cookie("memberId", "");
-				cookie.setMaxAge(0);
-				response.addCookie(cookie);
-			}
-		}else {
-			path = "/member/login.me?login=fail";
+		} else {
+			path = "/user/login.usr?login=fail";
 		}
 		
 		result.setRedirect(true); //세션에 저장된 값은 유지
