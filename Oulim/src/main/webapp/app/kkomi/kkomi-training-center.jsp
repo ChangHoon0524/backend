@@ -7,18 +7,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Kkomi-training-center</title>
 
-<link rel="stylesheet" href="/Oulim/asset/css/core/reset.css" />
-<link rel="stylesheet" href="/Oulim/asset/css/core/variable.css" />
-<link rel="stylesheet" href="/Oulim/asset/css/core/typography.css" />
-<link rel="stylesheet" href="/Oulim/asset/css/core/layout.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/core/reset.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/core/variable.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/core/typography.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/core/layout.css" />
 
-<link rel="stylesheet" href="/Oulim/asset/css/component/badge.css">
-<link rel="stylesheet" href="/Oulim/asset/css/pages/kkomi/Kkomi-training-center.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/component/badge.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/pages/kkomi/Kkomi-training-center.css">
 
-<script defer src="/Oulim/asset/js/pages/kkomi/KKomi-trainiing-center.js"></script>
-<jsp:include page="/app/include/header-login.jsp" />
+<script defer src="${pageContext.request.contextPath}/asset/js/pages/kkomi/KKomi-training-center.js"></script>
 </head>
-
+<jsp:include page="/app/include/header-login.jsp" />
+<script>
+	const contextPath = "${Pagecontext.request.ContextPath}";
+</script>
 <body>
 
 	<div id="header"></div>
@@ -59,13 +61,13 @@
 					<!-- 액션 -->
 					<div class="c-action-grid">
 						<button class="c-action-card js-feed">
-							<img src="/Oulim/asset/image/flower-icon.svg"> <span>먹이주기</span>
+							<img src="${pageContext.request.contextPath}/asset/image/flower-icon.svg"> <span>먹이주기</span>
 						</button>
 						<button class="c-action-card js-mission">
-							<img src="/Oulim/asset/image/game-icon.svg"> <span>미션</span>
+							<img src="${pageContext.request.contextPath}/asset/image/game-icon.svg"> <span>미션</span>
 						</button>
 						<button class="c-action-card js-storage">
-							<img src="/Oulim/asset/image/game-icon.svg"> <span>보관함</span>
+							<img src="${pageContext.request.contextPath}/asset/image/game-icon.svg"> <span>보관함</span>
 						</button>
 					</div>
 				</div>
