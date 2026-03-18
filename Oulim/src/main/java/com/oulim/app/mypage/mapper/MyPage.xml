@@ -35,9 +35,45 @@ GROUP BY
     
 </select>
 
-<select>
 <!-- 완료봉사, 예정봉사, 포인트 획득 간소화한 정보 출력 -->
+
+<select id="miniPoint">
+
+SELECT
+    LOG_REASON,
+    TO_CHAR(LOG_DATE, 'YYYY.MM.DD'),
+    CHANGEPOINT
+FROM TBL_LOG_POINT
+WHERE USER_NO = 1
+  AND CHANGEPOINT > 0
+ORDER BY LOG_NO DESC;
+
 </select>
+
+<select id="miniComVol">
+
+<![CDATA[
+SELECT tva.volun_act_title, TO_CHAR( tva.Volun_Act_Recru_Begin ,'yyyy-mm-dd') || ' ~ ' || TO_CHAR( tva.Volun_Act_Recru_End,'yyyy-mm-dd')
+FROM TBL_VOLUN_ACTIVITY tva
+JOIN TBL_VOLUN_APPLY apl
+ON tva.volun_act_no = apl.volun_act_no
+WHERE apl.user_no = #{userNo} AND apl.VOLUNACT_APPLYSTATUS = 1
+ORDER BY tva.volun_act_no DESC
+]]>
+
+</select>
+
+<select id="miniFinVol">
+<![CDATA[
+SELECT tva.volun_act_title, TO_CHAR( tva.Volun_Act_Proc_Begin ,'yyyy-mm-dd') || ' ~ ' || TO_CHAR( tva.Volun_Act_Proc_End,'yyyy-mm-dd')
+FROM TBL_VOLUN_ACTIVITY tva
+JOIN TBL_VOLUN_APPLY apl
+ON tva.volun_act_no = apl.volun_act_no
+WHERE apl.user_no = #{userNo} AND apl.VOLUNACT_APPLYSTATUS = 2
+ORDER BY tva.volun_act_no DESC
+]]>
+</select>
+
 
 <!-- 3. 내 정보 수정(일반) -->
 
@@ -51,13 +87,13 @@ user_phone_num = #{userPhoneNum},
 user_address = #{userAddress},
 user_address_detail = #{userAddressDetail},
 user_postnum = #{userPostnum},
-WHERE user_no = #{userNo}
+WHERE user_no = #{userNo} AND user_type = 1
 </update>
 
 
 <!-- 3. 내 정보 수정(기업) 트랜잭션 처리?-->
 
-<update id="normalUserEdit" parameterType="OrganMyPageJoinDTO">
+<update id="organlUserEdit" parameterType="OrganMyPageJoinDTO">
 
 UPDATE tbl_user SET 
 user_email = #{userEmail},
@@ -71,7 +107,7 @@ WHERE user_no = #{userNo} AND user_type = 2
 </update>
 
 
-<update id="organUserEdit" parameterType="OrganMyPageJoinDTO">
+<update id="organUserEdit2" parameterType="OrganMyPageJoinDTO">
 UPDATE tbl_organ SET 
 organ_name = #{organName},
 ORGAN_CERT_NUM = #{organCertNum}
@@ -82,7 +118,16 @@ WHERE organ_no = #{organNo}
 
 <!-- 4. 예정된 봉사 목록 조회 -->
 
-<select>
+<select id="comingVol">
+
+<![CDATA[
+SELECT tva.volun_act_title, TO_CHAR( tva.Volun_Act_Recru_Begin ,'yyyy-mm-dd') || ' ~ ' || TO_CHAR( tva.Volun_Act_Recru_End,'yyyy-mm-dd')
+FROM TBL_VOLUN_ACTIVITY tva
+JOIN TBL_VOLUN_APPLY apl
+ON tva.volun_act_no = apl.volun_act_no
+WHERE apl.user_no = #{userNo} AND apl.VOLUNACT_APPLYSTATUS = 1
+ORDER BY tva.volun_act_no DESC
+]]>
 
 
 </select>
@@ -91,7 +136,16 @@ WHERE organ_no = #{organNo}
 
 <!-- 5. 완료한 봉사 목록 조회 -->
 
-<select>
+<select id="finishVol">
+
+<![CDATA[
+SELECT tva.volun_act_title, TO_CHAR( tva.Volun_Act_Recru_Begin ,'yyyy-mm-dd') || ' ~ ' || TO_CHAR( tva.Volun_Act_Recru_End,'yyyy-mm-dd')
+FROM TBL_VOLUN_ACTIVITY tva
+JOIN TBL_VOLUN_APPLY apl
+ON tva.volun_act_no = apl.volun_act_no
+WHERE apl.user_no = #{userNo} AND apl.VOLUNACT_APPLYSTATUS = 2
+ORDER BY tva.volun_act_no DESC
+]]>
 
 </select>
 
@@ -129,9 +183,14 @@ ORDER BY LOG_NO DESC
 
 <!-- 8. 작성 글 조회 -->
 
-<select>
+<select id="mypost" parameterType="int">
 
-
+<![CDATA[
+SELECT tcp.postNo, tcp.postTitle, tcp.postDate, tpl.postLikeNo 
+FROM tbl_community_post tcp 
+JOIN tbl_post_like tpl 
+ON tcp.userno = #{userNo}
+]]>
 
 </select>
 
@@ -139,7 +198,14 @@ ORDER BY LOG_NO DESC
 
 <!-- 9. 회원탈퇴 -->
 
-<update>
+<update id="quit">
+
+UPDATE tbl_user SET
+user_status = 0;
+WHERE user_no = #{userNo}
+
 
 </update>
+
+
 </mapper>
