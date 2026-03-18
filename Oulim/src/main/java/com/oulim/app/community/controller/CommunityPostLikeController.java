@@ -24,10 +24,7 @@ public class CommunityPostLikeController implements Execute {
 		int postNo = Integer.valueOf(request.getParameter("postNo"));
 		postLikeDTO.setPostNo(postNo);
 		postLikeDTO.setUserNo(Integer.valueOf(request.getParameter("userNo")));
-//		boolean enableRecommend = commuDAO.checkPostLike(postLikeDTO);
-//		if(enableRecommend)
-//		{
-//		}
+
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");
 		boolean isSuccess = false;
@@ -41,12 +38,12 @@ public class CommunityPostLikeController implements Execute {
 		}
 		
 		try(PrintWriter out = response.getWriter()){
-			out.print("{\success\" : " + isSuccess + "}");
+			out.print("{\"success\" : " + isSuccess + "}");
 			out.flush();
 		}
 		
-		result.setPath("/community/detail.commu?postNo=" + postNo);
-		result.setRedirect(true);
+		result.setPath(null);
+		result.setRedirect(false);
 		
 		return result;
 	}	

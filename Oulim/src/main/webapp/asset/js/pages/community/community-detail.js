@@ -49,18 +49,25 @@ recommendBtn.addEventListener("click", async (e) => {
 	let result = confirm("추천하시겠습니까?");
 	if (result) {
 		try {
-			const res = await fetch(`${contextPath}/community/like.commu?
-			postNo=${encodeURIComponent(postNo)}&userNo=${encodeURIComponent(loginUserNo)}`, {
+			const res = await fetch(`${contextPath}/community/like.commu?postNo=${encodeURIComponent(postNo)}&userNo=${encodeURIComponent(loginUserNo)}`, {
 				method: "POST",
 				headers: { "X-Requested-With": "fetch" },
 			});
 			if (!res.ok) {
 				throw new Error("추천 요청 실패")
 			}
+			
+			const data = await res.json();
+			if(data.success){
+				console.log("추천 성공")
+			}else{
+				alert("추천할 수 없었습니다.");
+			}		
 		} catch (err) {
 			console.error("게시글 추천 실패 : ", err);
 			alert("게시글 추천에 실패했습니다");
 		}
+		location.reload();
 	}
 });
 
