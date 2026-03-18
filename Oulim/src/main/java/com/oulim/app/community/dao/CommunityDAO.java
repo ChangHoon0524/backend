@@ -39,7 +39,7 @@ public class CommunityDAO {
 	}
 
 	// 게시글 작성 메소드
-	public int insertCommunityPost(CommunityPostDTO communityPostDTO, boolean isNoFile) {
+	public int insertCommunityPost(CommunityPostDTO communityPostDTO) {
 		System.out.println("게시글 작성 - insertCommunityPost 메소드 실행");
 		int postNo = sqlSession.insert("community.postInsert", communityPostDTO);
 		System.out.println("게시글 작성 성공");
