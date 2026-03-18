@@ -15,7 +15,13 @@ public class AdminLoginController implements Execute {
 	public Result execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		return null;
+		
+		Result result = new Result();
+		
+		result.setPath("/app/admin/jsp/login.jsp");
+		result.setRedirect(false);
+		
+		return result;
 	}
 
 }

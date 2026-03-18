@@ -31,7 +31,7 @@ public class AdminFrontController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		doProcess(request, response);
 	}
 
 	/**
@@ -39,14 +39,14 @@ public class AdminFrontController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doProcess(request, response);
 	}
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String requestURI = request.getRequestURI();              // /Oulim/user/loginOk.usr
-		String contextPath = request.getContextPath();            // /Oulim
-		String target = requestURI.substring(contextPath.length()); // /user/loginOk.usr
+		String requestURI = request.getRequestURI();    
+		String contextPath = request.getContextPath();  
+		String target = requestURI.substring(contextPath.length()); 
 
 		System.out.println("FrontController 실행");
 		System.out.println("URI : " + requestURI);
@@ -55,59 +55,34 @@ public class AdminFrontController extends HttpServlet {
 		Result result = null;
 		Execute execute = null;
 		switch(target) {
+		
 		case "/admin/login.adm" ->
 			{
 				System.out.println("로그인 페이지 요청");
-				result = AdminLoginController().execute(request, response);
+				result = new AdminLoginController().execute(request, response);
 				System.out.println();	
 			}
-		case "/admln/login.adm"->
+		case "/admin/loginOk.adm"->
 			{
+				System.out.println("로그인 처리요청");
 				result = new AdminLoginOkController().execute(request, response);
 			}
-		}
-		if (target.equals("/admin/login.adm")) {
-			System.out.println("로그인 페이지 요청");
-			execute = new AdminLoginController();
-
-		} else if (target.equals("/admin/loginOk.adm")) {O
-			System.out.println("로그인 처리 요청");
-			execute = new AdminLoginOkController();
-
-		} else if (target.equals("/admin/logout.adm")) {
-			System.out.println("로그아웃 요청");
-			execute = new AdminLogoutController();
-		}
-
-		if (execute != null) {
-			result = execute.execute(request, response);
-		}
-
-		if (result != null) {
-			if (result.isRedirect()) {
-				response.sendRedirect(request.getContextPath() + result.getPath());
-			} else {
-				RequestDispatcher dispatcher = request.getRequestDispatcher(result.getPath());
-				dispatcher.forward(request, response);
+		
+		case "/admin/logout.adm"->
+			{
+				System.out.println("로그아웃 요청");
+				result = new AdminLogoutController().execute(request, response);
 			}
 		}
-		
-		
-		
-	
-}
-
-	private Execute AdminLoginController() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-
-
-
-
-}
+			
+			
+			if (result != null) {
+				if (result.isRedirect()) {
+					response.sendRedirect(request.getContextPath() + result.getPath());
+				} else {
+					RequestDispatcher dispatcher = request.getRequestDispatcher(result.getPath());
+					dispatcher.forward(request, response);
+				}
+			}
 	}
 }
