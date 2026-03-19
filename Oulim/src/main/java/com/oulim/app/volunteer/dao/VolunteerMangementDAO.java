@@ -18,6 +18,11 @@ public class VolunteerMangementDAO {
 		sqlSession = MyBatisConfig.getSqlSessionFactory().openSession(true);
 	}
 
+	// 봉사활동 히스토리 추가
+	public void insertVolunHistory(VolunApplyDTO volunApplyDTO) {
+		sqlSession.insert("VolunteerManagement.insertVolunHistory", volunApplyDTO);
+	}
+	
 	// 봉사자 하루 인원 수
 	public List<VolunApplyDTO> selectApplyCountByDate(int volunActNo) {
 		return sqlSession.selectList("VolunteerManagement.selectApplyCountByDate", volunActNo);
