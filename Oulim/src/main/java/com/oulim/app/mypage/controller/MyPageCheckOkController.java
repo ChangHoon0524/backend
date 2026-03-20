@@ -30,7 +30,7 @@ public class MyPageCheckOkController implements Execute{
 		
 		Integer userNo = (Integer) session.getAttribute("userNo");
 		
-		String userPw = request.getParameter("password");
+		String userPw = request.getParameter("userPw");
 		
 		System.out.println(userNo);
 		
@@ -43,6 +43,7 @@ public class MyPageCheckOkController implements Execute{
 	      Map<String, Object> userMap = new HashMap<>();
 	      userMap.put("userNo", userNo);
 	      userMap.put("userPw", userPw);
+	      
 	      
 		if(mypageDAO.enterMyPage(userMap)) {
 			System.out.println("비밀번호 일치 조건문 진입");
@@ -59,7 +60,9 @@ public class MyPageCheckOkController implements Execute{
 			System.out.println("포인트 정보 : " + pointInfo);
 			
 			System.out.println(pointInfo);
-			
+			System.out.println("fin" + finVolunInfo.toString());
+			System.out.println("com" + comVolunInfo.toString());
+			System.out.println("sum" + summaryInfo.toString());
 			request.setAttribute("miniPoint", pointInfo);
 			
 			request.setAttribute("totalVolunTime", summaryInfo.getTotalVolunTime());
@@ -79,7 +82,7 @@ public class MyPageCheckOkController implements Execute{
 			System.out.println("조건문 통과");
 			
 			result.setPath("/app/mypage/profile/profile.jsp");
-			result.setRedirect(true);
+			result.setRedirect(false);
 			
 			
 			
