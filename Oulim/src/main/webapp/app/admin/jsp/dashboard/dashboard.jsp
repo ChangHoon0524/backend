@@ -43,27 +43,27 @@
       <nav class="sidebar-menu">
         <ul>
           <li class="menu-item">
-            <a href="${pageContext.request.contextPath}app/admin/jsp/dashboard/dashboard.jsp">통계</a>
+            <a href="${pageContext.request.contextPath}/admin/dashboard.adm">통계</a>
           </li>
-<%-- <form action="${pageContext.request.contextPath}/admin/loginOk.adm" method="POST"> --%>
+
           <!-- 회원관리 -->
           <li class="menu-item dropdown">
             <a href="#" class="menu-title"> 회원관리 </a>
 
             <ul class="submenu">
-              <li><a href="${pageContext.request.contextPath}/app/admin/jsp/member-manage/company-certification.jsp">기업회원</a></li>
-              <li><a href="${pageContext.request.contextPath}/admin/memlist.adm" method="POST">회원조회</a></li>
+              <li><a href="${pageContext.request.contextPath}/admin/companycertification.adm">기업회원</a></li>
+              <li><a href="${pageContext.request.contextPath}/admin/memlist.adm">회원조회</a></li>
             </ul>
           </li>
 
           <!-- 봉사활동관리 -->
           <li class="menu-item dropdown">
-            <a href="${pageContext.request.contextPath}/app/admin/jsp/volunteer-manage/volun-list.jsp" class="menu-title"> 봉사활동관리 </a>
+            <a href="${pageContext.request.contextPath}/admin/volunlist.adm" class="menu-title"> 봉사활동관리 </a>
           </li>
 
           <!-- 게시판관리 -->
           <li class="menu-item dropdown">
-            <a href="${pageContext.request.contextPath}/app/admin/jsp/community-manage/post-list.jsp" class="menu-title"> 게시판관리 </a>
+            <a href="${pageContext.request.contextPath}/admin/postlist.adm" class="menu-title"> 게시판관리 </a>
           </li>
         </ul>
       </nav>

@@ -16,11 +16,11 @@ public class AdminDashboardController implements Execute{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Result result = new Result();
+		System.out.println("대쉬보드 진입요청");
+		result.setPath("/app/admin/jsp/dashboard/dashboard.jsp");
+		result.setRedirect(true);
 		
-		
-		
-		
-		return null;
+		return result;
 	}
 	
 	

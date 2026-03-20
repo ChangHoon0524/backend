@@ -16,8 +16,8 @@ public class AdminVolunListController implements Execute{
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Result result = new Result();
-		
-		result.setPath("/app/admin/jsp/volun-manage/volun-list.jsp");
+		System.out.println(" 봉사목록 진입");
+		result.setPath("/app/admin/jsp/volunteer-manage/volun-list.jsp");
 		result.setRedirect(true);
 		
 		return result;
