@@ -80,6 +80,7 @@ public class MyPageJoinDAO {
 		return sqlSession.selectList("mypage.finishVol", userNo);
 	}
 	
+	
 //	6. 적립된 포인트 내역 조회
 	public List<MyPageJoinDTO> plusPoint(Map<String, Object> pageMap) {
 		return sqlSession.selectList("mypage.plusPoint", pageMap);
@@ -97,7 +98,7 @@ public class MyPageJoinDAO {
 	}
 	
 	public int minusTotal(int userNo) {
-		return sqlSession.selectOne("mypage.minusTotal");
+		return sqlSession.selectOne("mypage.minusTotal", userNo);
 	}
 	
 	
