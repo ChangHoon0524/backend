@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>		
 <!doctype html>
 <html lang="ko">
 <head>
@@ -15,6 +16,7 @@
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/app/admin/css/volunteer-manage/volun-detail.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/app/admin/css/aside.css" />
+    <script src="${pageContext.request.contextPath}/app/admin/js/volun-detail.js"></script>
 </head>
 <body>
     <main class="l-main">
@@ -27,21 +29,35 @@
 		
 		    <div class="info-section">
 		        <article class="v-detail-info">
-		            <div class="v-detail-info__header">
-		                <span class="c-badge c-badge--primary">모집중</span>
-		                <span class="c-badge c-badge--orange">독거노인</span>
-		            </div>
-		            <h2 class="v-detail-info__title">주민과 함께하는 제설작업 봉사자 모집</h2>
-		            <div class="v-detail-info__body">
-		                <div class="v-info-row">
-		                    <span class="v-info-label">봉사기간</span>
-		                    <span class="v-info-value text-bold">26.02.03 ~ 26.02.06</span>
-		                </div>
-		                <div class="v-info-row">
-		                    <span class="v-info-label">신청현황</span>
-		                    <span class="v-info-value">30명 모집 / <span class="text-primary">12명 신청 중</span></span>
-		                </div>
-		            </div>
+					<div class="v-detail-info__header">
+					    <span class="c-badge c-badge--primary">
+					        ${detail.recruStatus}
+					    </span>
+					    <span class="c-badge c-badge--orange">
+					        ${detail.actTypeName}
+					    </span>
+					</div>
+					
+					<h2 class="v-detail-info__title">
+					    ${detail.volunActTitle}
+					</h2>
+					
+					<div class="v-detail-info__body">
+					    <div class="v-info-row">
+					        <span class="v-info-label">봉사기간</span>
+					        <span class="v-info-value text-bold">
+					            ${detail.volunActProcBegin} ~ ${detail.volunActProcEnd}
+					        </span>
+					    </div>
+					
+					    <div class="v-info-row">
+					        <span class="v-info-label">신청현황</span>
+					        <span class="v-info-value">
+					            ${detail.volunActRecruMaxCount}명 모집 /
+					            <span class="text-primary">${applyCount}명 신청 중</span>
+					        </span>
+					    </div>
+					</div>
 		        </article>
 		    </div>
 		
@@ -61,19 +77,40 @@
 			    <div class="c-list__body">
 			      <c:choose>
 			        <c:when test="${not empty volunList}">
-				      <c:forEach var="v" items="${volunList}">
-				        <div class="c-list__row">
-							<div class="c-list__col">12</div>
-							<div class="c-list__col">박지수 <span class="user-id">(pjs1234)</span></div>
-							<div class="c-list__col">45세</div>
-							<div class="c-list__col">26.01.25</div>
-							<div class="c-list__col">
-								<button type="button" class="btn-delete" onclick="confirmDelete()">
-									삭제
-								</button>
-							</div>
-				        </div>
-				      </c:forEach>
+						<c:forEach var="v" items="${volunList}" varStatus="status">
+						    <div class="c-list__row">
+						        
+						        <!-- 번호 -->
+						        <div class="c-list__col">
+						            ${status.index + 1}
+						        </div>
+						
+						        <!-- 이름 + ID -->
+						        <div class="c-list__col">
+						            ${v.userName}
+						            <span class="user-id">(${v.userId})</span>
+						        </div>
+						
+						        <!-- 나이 -->
+						        <div class="c-list__col">
+						            ${v.userAge}세
+						        </div>
+						
+						        <!-- 신청일 -->
+						        <div class="c-list__col">
+						            ${v.volunActApplyDate}
+						        </div>
+						
+						        <!-- 삭제 -->
+						        <div class="c-list__col">
+						            <button type="button" class="btn-delete"
+						                onclick="deleteApply(${v.volunActNo}, ${v.userNo})">
+						                삭제
+						            </button>
+						        </div>
+						
+						    </div>
+						</c:forEach>
 			        </c:when>
 			        <c:otherwise>
 			          <div class="c-list__row">
