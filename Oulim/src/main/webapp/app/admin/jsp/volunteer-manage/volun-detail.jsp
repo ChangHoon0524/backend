@@ -1,252 +1,100 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
-<html lang="en">
-
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>volun-detail</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>봉사 신청자 관리 | 관리자</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/core/reset.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/core/variable.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/core/Typography.css" />
-    <!-- 컨포넌트 css 선택-->
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/component/pagination.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/component/input.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/component/button.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/component/list.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/component/card.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/component/DetailCard.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/asset/css/component/badge.css" />
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/app/admin/css/volunteer-manage/volun-detail.css" />
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/app/admin/css/aside.css" />
+    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/app/admin/css/volunteer-manage/volun-detail.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/app/admin/css/aside.css" />
 </head>
-
 <body>
-	<main class="l-main">
-	<jsp:include page="/app/admin/jsp/aside.jsp"/>
-	
+    <main class="l-main">
+        <jsp:include page="/app/admin/jsp/aside.jsp"/>
 
-    <!-- 메인 컨텐츠 -->
-
-      <section class="l-content">
-        <div class="header">
-          <h1>봉사상세</h1>
-        </div>
-        <div id="content-area">
-          <div class="c-detail-card">
-            <a href="">
-              <div class="c-detail-card__header">
-                <span class="c-badge c-badge--primary"> 모집중 </span>
-                <span class="c-badge c-badge--orange"> 독거노인 </span>
-              </div>
-              <h2 class="c-detail-card__title">
-                주민과 함께하는 제설작업 봉사
-              </h2>
-              <div class="c-detail-card__info">
-                <div class="c-detail-card__row">
-                  <span class="c-detail-card__label"> 봉사장소 </span>
-                  <span class="c-detail-card__value">
-                    서울특별시 도봉구 | 창4동 주민센터
-                  </span>
-                </div>
-                <div class="c-detail-card__row">
-                  <span class="c-detail-card__label"> 봉사기간 </span>
-                  <span class="c-detail-card__value">
-                    26.02.03 ~ 26.02.06
-                  </span>
-                </div>
-                <div class="c-detail-card__row">
-                  <span class="c-detail-card__label"> 모집기간 </span>
-                  <span class="c-detail-card__value">
-                    26.01.24 ~ 26.02.02
-                  </span>
-                </div>
-                <div class="c-detail-card__row">
-                  <span class="c-detail-card__label"> 봉사시간 </span>
-                  <span class="c-detail-card__value"> 4시간 </span>
-                </div>
-                <div class="c-detail-card__row">
-                  <span class="c-detail-card__label"> 모집인원 </span>
-                  <span class="c-detail-card__value"> 30명 </span>
-                </div>
-                <div class="c-detail-card__row">
-                  <span class="c-detail-card__label"> 포인트</span>
-                  <span class="c-detail-card__value"> 2000P </span>
-                </div>
-                <div class="c-detail-card__row">
-                  <span class="c-detail-card__label"> 봉사자 연령 </span>
-                  <span class="c-detail-card__value"> 직장인(30~) </span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="c-list c-list--6col">
-          <!-- header -->
-          <div class="c-list__header">
-            <span class="c-list__col">추천</span>
-            <span class="c-list__col">봉사자</span>
-            <span class="c-list__col">연령</span>
-            <span class="c-list__col">봉사일자</span>
-            <span class="c-list__col">상태</span>
-            <span class="c-list__col">출결승인</span>
-          </div>
-          <!-- body -->
-          <div class="c-list__body">
-            <div class="c-list__row" data-date="2026-04-03">
-              <div class="c-button--volunteer-manage-detail_btn">
-                <button class="recommend-btn c-button c-button--primary c-button--md">
-                  추천
-                </button>
-              </div>
-              <span class="c-list__col"> 홍길동 </span>
-              <span class="c-list__col"> 32세 </span>
-              <span class="c-list__col"> 26.02.03 </span>
-              <span class="c-list__col"> 출석 </span>
-              <div class="c-list__actions">
-                <div class="c-button--volunteer-manage-register">
-                  <button class="attendance-btn c-button c-button--primary c-button--md">
-                    출석
-                  </button>
-                  <button class="absent-btn c-button c-button--secondary c-button--md">
-                    결석
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="c-list__row" data-date="2026-04-03">
-              <div class="c-button--volunteer-manage-detail_btn">
-                <button class="recommend-btn c-button c-button--primary c-button--md">
-                  추천
-                </button>
-              </div>
-              <span class="c-list__col"> 홍길동 </span>
-              <span class="c-list__col"> 32세 </span>
-              <span class="c-list__col"> 26.02.03 </span>
-              <span class="c-list__col"> 출석 </span>
-              <div class="c-list__actions">
-                <div class="c-button--volunteer-manage-register">
-                  <button class="attendance-btn c-button c-button--primary c-button--md">
-                    출석
-                  </button>
-                  <button class="absent-btn c-button c-button--secondary c-button--md">
-                    결석
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="c-list__row" data-date="2026-04-03">
-              <div class="c-button--volunteer-manage-detail_btn">
-                <button class="recommend-btn c-button c-button--primary c-button--md">
-                  추천
-                </button>
-              </div>
-              <span class="c-list__col"> 홍길동 </span>
-              <span class="c-list__col"> 32세 </span>
-              <span class="c-list__col"> 26.02.03 </span>
-              <span class="c-list__col"> 출석 </span>
-              <div class="c-list__actions">
-                <div class="c-button--volunteer-manage-register">
-                  <button class="attendance-btn c-button c-button--primary c-button--md">
-                    출석
-                  </button>
-                  <button class="absent-btn c-button c-button--secondary c-button--md">
-                    결석
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="c-list__row" data-date="2026-04-03">
-              <div class="c-button--volunteer-manage-detail_btn">
-                <button class="recommend-btn c-button c-button--primary c-button--md">
-                  추천
-                </button>
-              </div>
-              <span class="c-list__col"> 홍길동 </span>
-              <span class="c-list__col"> 32세 </span>
-              <span class="c-list__col"> 26.02.03 </span>
-              <span class="c-list__col"> 출석 </span>
-              <div class="c-list__actions">
-                <div class="c-button--volunteer-manage-register">
-                  <button class="attendance-btn c-button c-button--primary c-button--md">
-                    출석
-                  </button>
-                  <button class="absent-btn c-button c-button--secondary c-button--md">
-                    결석
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="c-list__row" data-date="2026-04-03">
-              <div class="c-button--volunteer-manage-detail_btn">
-                <button class="recommend-btn c-button c-button--primary c-button--md">
-                  추천
-                </button>
-              </div>
-              <span class="c-list__col"> 홍길동 </span>
-              <span class="c-list__col"> 32세 </span>
-              <span class="c-list__col"> 26.02.03 </span>
-              <span class="c-list__col"> 출석 </span>
-              <div class="c-list__actions">
-                <div class="c-button--volunteer-manage-register">
-                  <button class="attendance-btn c-button c-button--primary c-button--md">
-                    출석
-                  </button>
-                  <button class="absent-btn c-button c-button--secondary c-button--md">
-                    결석
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="c-list__row" data-date="2026-04-03">
-              <div class="c-button--volunteer-manage-detail_btn">
-                <button class="recommend-btn c-button c-button--primary c-button--md">
-                  추천
-                </button>
-              </div>
-              <span class="c-list__col"> 홍길동 </span>
-              <span class="c-list__col"> 32세 </span>
-              <span class="c-list__col"> 26.02.03 </span>
-              <span class="c-list__col"> 출석 </span>
-              <div class="c-list__actions">
-                <div class="c-button--volunteer-manage-register">
-                  <button class="attendance-btn c-button c-button--primary c-button--md">
-                    출석
-                  </button>
-                  <button class="absent-btn c-button c-button--secondary c-button--md">
-                    결석
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="page">
-          <!-- 페이지네이션  c-pagination-->
-          <nav class="c-pagination">
-            <a class="c-pagination__link is-disabled">‹‹</a>
-            <a class="c-pagination__link is-disabled">‹</a>
-            <a class="c-pagination__link is-active">1</a>
-            <a class="c-pagination__link">2</a>
-            <a class="c-pagination__link">3</a>
-            <a class="c-pagination__link">4</a>
-            <a class="c-pagination__link">5</a>
-            <a class="c-pagination__link">6</a>
-            <a class="c-pagination__link">7</a>
-            <a class="c-pagination__link">8</a>
-            <a class="c-pagination__link">9</a>
-            <a class="c-pagination__link">10</a>
-            <a class="c-pagination__link">›</a>
-            <a class="c-pagination__link">››</a>
-          </nav>
-      </section>
-
-    </div>
-  </main>
-
-
+		<section class="l-content">
+		    <header class="page-header">
+		        <h2 class="text-2xl text-bold">봉사 신청 현황</h2>
+		    </header>
+		
+		    <div class="info-section">
+		        <article class="v-detail-info">
+		            <div class="v-detail-info__header">
+		                <span class="c-badge c-badge--primary">모집중</span>
+		                <span class="c-badge c-badge--orange">독거노인</span>
+		            </div>
+		            <h2 class="v-detail-info__title">주민과 함께하는 제설작업 봉사자 모집</h2>
+		            <div class="v-detail-info__body">
+		                <div class="v-info-row">
+		                    <span class="v-info-label">봉사기간</span>
+		                    <span class="v-info-value text-bold">26.02.03 ~ 26.02.06</span>
+		                </div>
+		                <div class="v-info-row">
+		                    <span class="v-info-label">신청현황</span>
+		                    <span class="v-info-value">30명 모집 / <span class="text-primary">12명 신청 중</span></span>
+		                </div>
+		            </div>
+		        </article>
+		    </div>
+		
+			<div class="c-list-container">
+			  <div class="c-list">
+			  
+			    <!-- 헤더 -->
+			    <div class="c-list__header">
+			      <div class="c-list__col">번호</div>
+			      <div class="c-list__col">신청자(ID)</div>
+			      <div class="c-list__col">연령</div>
+			      <div class="c-list__col">신청일자</div>
+			      <div class="c-list__col">관리</div>
+			    </div>
+			
+			    <!-- 바디 -->
+			    <div class="c-list__body">
+			      <c:choose>
+			        <c:when test="${not empty volunList}">
+				      <c:forEach var="v" items="${volunList}">
+				        <div class="c-list__row">
+							<div class="c-list__col">12</div>
+							<div class="c-list__col">박지수 <span class="user-id">(pjs1234)</span></div>
+							<div class="c-list__col">45세</div>
+							<div class="c-list__col">26.01.25</div>
+							<div class="c-list__col">
+								<button type="button" class="btn-delete" onclick="confirmDelete()">
+									삭제
+								</button>
+							</div>
+				        </div>
+				      </c:forEach>
+			        </c:when>
+			        <c:otherwise>
+			          <div class="c-list__row">
+			            <div class="c-list__col" style="width:100%; text-align:center;">
+			              데이터가 없습니다.
+			            </div>
+			          </div>
+			        </c:otherwise>
+			      </c:choose>
+			    </div>
+			  </div>
+			</div>
+		
+		        <nav class="v-pagination-area">
+		            <a href="#" class="p-arrow">‹</a>
+		            <a href="#" class="p-link is-active">1</a>
+		            <a href="#" class="p-link">2</a>
+		            <a href="#" class="p-arrow">›</a>
+		        </nav>
+		    </div>
+		</section>
+    </main>
 </body>
-
 </html>
