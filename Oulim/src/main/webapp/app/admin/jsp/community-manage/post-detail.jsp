@@ -44,7 +44,7 @@
       <nav class="sidebar-menu">
         <ul>
           <li class="menu-item">
-            <a href="${pageContext.request.contextPath}admin/dashboard.amd">통계</a>
+            <a href="${pageContext.request.contextPath}/admin/dashboard.adm">통계</a>
           </li>
 
           <!-- 회원관리 -->
