@@ -29,7 +29,7 @@
 
 <body>
 	<jsp:include page="/app/include/header.jsp" />
-
+<input type= "hidden" value="${userMap.userPw }">
   <main class="l-main">
 
     <div class="l-mypage">
@@ -122,7 +122,16 @@
   </main>
 
 <jsp:include page="/app/include/footer.jsp" />
-
 </body>
+<script>
+	const successMsg = "${sessionScope.editSuccess}";
 
+	if (successMsg && successMsg !== "null" && successMsg !== "") {
+		alert(successMsg);
+	}
+</script>
+
+<%
+session.removeAttribute("editSuccess");
+%>
 </html>
