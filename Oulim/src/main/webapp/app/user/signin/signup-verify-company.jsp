@@ -46,7 +46,17 @@
 						id="company-email-verified" value="false" />
 					<div class="l-signup-verify-company-layout">
 						<div>
-							<h2>회원가입</h2>
+						<%
+					    String joinError = (String) request.getAttribute("joinError");
+					    if (joinError != null) {
+						%>
+						<script>
+						    alert("<%= joinError %>");
+						</script>
+						<%
+						    }
+						%>
+							<h2>기업 회원가입</h2>
 						</div>
 
 						<div class="c-signup-verify-company-text">
