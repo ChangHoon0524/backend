@@ -322,7 +322,9 @@ SELECT * FROM (
         tcp.post_No AS postNo,
         tcp.post_title AS postTitle,
         TO_CHAR(tcp.post_Date, 'yyyy-mm-dd') AS postDate,
-        tpl.post_Like_No AS postLikeNo
+        (SELECT COUNT(post_like_no)
+                          FROM tbl_post_like tpl
+                         WHERE tpl.post_no = tcp.post_no) AS postLikeNo
     FROM tbl_community_post tcp
     LEFT JOIN tbl_post_like tpl
         ON tcp.post_no = tpl.post_no
