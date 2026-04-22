@@ -9,17 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import com.oulim.app.common.controller.Execute;
 import com.oulim.app.common.controller.Result;
 
-public class IdFindController implements Execute {
+public class OrganJoinFirstController implements Execute {
 
 	@Override
 	public Result execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		Result result = new Result();
 
-		result.setPath("/app/user/find-idpassword/id-find.jsp");
+		result.setPath("/app/user/signin/signup-verify-company.jsp");
 		result.setRedirect(false);
 
 		return result;
+		
 	}
 
 }
